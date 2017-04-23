@@ -23,9 +23,7 @@ try:
             #set timestamp variable
             ts = datetime.datetime.fromtimestamp(time.time()).strftime('%H:%M:%S %d-%m-%Y')
             print "Motion Detected!" + ts
-        #else:
-        #    print "fail"
-
+            
         time.sleep(1)
 except KeyboardInterrupt:
     print "Quit"
