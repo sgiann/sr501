@@ -2,15 +2,26 @@
 import RPi.GPIO as GPIO
 import time
 import datetime
+import os.path as path
+
+print "Initialize"
 
 #set out pin numbering
 GPIO.setmode(GPIO.BCM)
-
-#name our input pin
+#name and set our input pin
 PIR_PIN = 21
-
 #define pin as input
 GPIO.setup(PIR_PIN, GPIO.IN)
+
+#check and initialize file
+filename = "/home/pi/Documents/sr501_log.txt"
+if (path.isfile(filename)):
+    #open file
+    
+else:
+    #create file
+
+#initialize or append context
 
 try:
     print "PIR Module Test (CTRL+C to exit)"
