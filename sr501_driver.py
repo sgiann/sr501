@@ -14,15 +14,17 @@ PIR_PIN = 21
 GPIO.setup(PIR_PIN, GPIO.IN)
 
 #check and initialize file
-filename = "/home/pi/Documents/sr501_log.txt"
-if (path.isfile(filename)):
-    #open file
-    
-else:
-    #create file
-
-#initialize or append context
-
+fileName = "/home/pi/Documents/sr501_log.txt"
+fileMode = "a"
+fileBuffered = 1
+##if (path.isfile(filename)):
+##    #open file
+##    #fileHandler
+##    print "Under construction"
+##else:
+##    #create file
+logFileHandler = open(fileName, fileMode, fileBuffered)
+logFileHandler.write("Start\n")
 try:
     print "PIR Module Test (CTRL+C to exit)"
     time.sleep(2)
@@ -33,9 +35,12 @@ try:
         if GPIO.input(PIR_PIN):
             #set timestamp variable
             ts = datetime.datetime.fromtimestamp(time.time()).strftime('%H:%M:%S %d-%m-%Y')
+            logFileHandler.write(ts + "\n")
             print "Motion Detected!" + ts
             
         time.sleep(1)
 except KeyboardInterrupt:
+    logFileHandler.write("End\n\n")
+    logFileHandler.close()
     print "Quit"
     GPIO.cleanup()
